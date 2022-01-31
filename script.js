@@ -11,7 +11,6 @@ let modifiedArray2; //Tutte le stringhe dovranno avere la prima lettera MAIUSCOL
 // Esercizio 1 - Soluzione 1
 function divisibleBy3(element) {
 	let tempArray = []
-
 	for (const element of testArray1) {
 		if (element % 3 === 0) {
 			tempArray.push(element);
@@ -20,7 +19,7 @@ function divisibleBy3(element) {
 	return tempArray;
 }
 
-console.log(divisibleBy3(testArray1));
+//console.log(divisibleBy3(testArray1));
 
 // Esercizio 2
 function upTo6Chars(element) {
@@ -33,7 +32,7 @@ function upTo6Chars(element) {
 	return tempArray;
 }
 
-console.log(upTo6Chars(testArray2));
+//console.log(upTo6Chars(testArray2));
 
 // Esercizio 3
 function reduceBy10Perc(element) {
@@ -45,7 +44,7 @@ function reduceBy10Perc(element) {
 	return tempArray;
 }
 
-console.log(reduceBy10Perc(testArray1));
+//console.log(reduceBy10Perc(testArray1));
 
 // Esercizio 4
 function allToUppercase(element) {
@@ -56,7 +55,7 @@ function allToUppercase(element) {
 	return tempArray;
 }
 
-console.log(allToUppercase(testArray2));
+//console.log(allToUppercase(testArray2));
 
 // Esercizio 5
 function positivesTill100(element) {
@@ -72,7 +71,7 @@ function positivesTill100(element) {
 	return tempArray;
 }
 
-console.log(positivesTill100(testArray1));
+//console.log(positivesTill100(testArray1));
 
 // Esercizio 6
 function initialToUppercase() {
@@ -85,7 +84,7 @@ function initialToUppercase() {
 	return tempArray;
 }
 
-console.log(initialToUppercase(testArray2));
+//console.log(initialToUppercase(testArray2));
 
 // Esercizio bonus 1
 function sumAllArray(arrayToSum) {
@@ -95,7 +94,7 @@ function sumAllArray(arrayToSum) {
 	}
 	return result;
 }
-console.log(sumAllArray(testArray1));
+//console.log(sumAllArray(testArray1));
 
 
 // Esercizio bonus 2
@@ -105,11 +104,11 @@ function sum(first, second) {
 }
 
 function product(previous, current) {
-	return previous * current ;
+	return previous * current;
 }
 
-function sumEvenIndex(previous, current, index){
-	if(index % 2 === 0){
+function sumEvenIndex(previous, current, index) {
+	if (index % 2 === 0) {
 		return previous + current;
 	} else {
 		return previous;
@@ -132,7 +131,107 @@ function reduce(arrayToAggregate, aggregationFunction, startingElement) {
 	}
 	return result;
 }
-console.log(reduce(testArray1, sum));
-console.log(reduce(testArray1, product));
-console.log(reduce(testArray1, sumEvenIndex));
-console.log(testArray1.reduce((previous, current, index, array) => previous + current, 0));
+// console.log(reduce(testArray1, sum));
+// console.log(reduce(testArray1, product));
+// console.log(reduce(testArray1, sumEvenIndex));
+// console.log(testArray1.reduce((previous, current, index, array) => previous + current, 0));
+
+function removeOddAddConcatenate(previous, current, index) {
+	let tempString = previous;
+	if (index % 2 === 0) {
+		tempString + current;
+	} else {
+		return previous = + " " + current;
+	}
+}
+
+//Dato un array di numeri: reduce → maggiore assoluto,
+//reduce → minore dei negativi, reduce → la somma dei numeri pari
+let array = [12, 345, -1234, 1, 0, 23456, -2, 2, 3];
+
+//Dato un array di stringhe: reduce → solo consonanti (con e senza),
+//reduce → solo vocali (anche con ripetizioni) ((esiste una struttura dati in js simile all'array che si chiama set))
+//map → cambia maiuscole in minuscole, minuscole in maiuscole
+let stringArray = ["Pippo", "Paperone", "Gambadilegno", "Basettoni", "Clarabella", "Osvaldo"];
+
+
+//Esercizio 1 - Soluzione 1
+function absoluteHigher(previous, current) {
+	if (current > previous) { //current = 12, 12 > -infinity
+		previous = current;
+	}
+	return previous;
+}
+//console.log("[#1] Numero più grande in valore assoluto: " + array.reduce(absoluteHigher, -Infinity));
+
+//Esercizio 1 - Soluzione 2
+//console.log("[#2] Numero più grande in valore assoluto: " + array.reduce((previous, current) => current > previous ? current : previous));
+
+//Esercizio 2 - Soluzione 1
+function negativesSmaller(previous, current) {
+	if (current < previous) {
+		previous = current;
+	}
+	return previous;
+}
+//console.log("[#1] Numero più piccolo dei negativi: " + array.filter((element) => element < 0).reduce(negativesSmaller));
+
+//Esercizio 2 - Soluzione 2
+//console.log("[#2] Numero più piccolo dei negativi: " + array.reduce((previous, current) => current < previous ? current : previous));
+
+//Esercizio 3 - Soluzione 1
+function sumEven(previous, current) {
+	if (current % 2 === 0) {
+		return previous + current;
+	} else {
+		return previous;
+	}
+}
+
+//console.log("[#1] La somma dei numeri pari: " + array.reduce(sumEven, 0));
+
+//Esercizio 3 - Soluzione 2
+//console.log("[#2] La somma dei numeri pari: " + array.reduce((previous, current) => current % 2 === 0 ? previous + current : previous));
+
+//Funzione che controlla se all'interno della stringa ci sono vocali
+//Versione 1
+let string = ["Pippo"]
+
+function checkIfVowels(string) {
+	let vowels = ["a", "e", "i", "o", "u"];
+	for (let i = 0; i < string.length; i++) {
+		const char = string[i];
+		if (char.includes(vowels)) {
+			console.log("La stringa contiene vocali");
+		} else {
+			console.log("La stringa non contiene vocali");
+		}
+	}
+}
+//checkIfVowels(string);
+
+//Versione 2
+function checkIfVowels2(string) {
+	let vowels = ["a", "e", "i", "o", "u"];
+	return vowels.some((v) => string.includes(v));
+}
+//console.log(checkIfVowels2(string));
+
+//Esercizio 4 - Soluzione 1
+function arrayOfVowels(string) {
+
+}
+
+function arrayOfConsonants(string){
+	let arrayFromString = [...string];
+	let vowelsArray = arrayFromString.filter(checkIfVowels);
+	return vowelsArray;
+}
+console.log(arrayOfVowels(string));
+
+let arrayOfCons = arrayOfConsonants(string);
+let setOfCons = new Set(arrayOfCons);
+let stringOfCon =[...setOfCons].join("");
+console.log(stringOfCon);
+
+console.log([...new Set(arrayOfConsonants(string))].join(""));
